@@ -2,6 +2,8 @@
 
 >> Zhe Wang, Wei He, Hua Wu et al. 2016, arxiv
 
+Reference Code: [TensorFlow Code](https://github.com/Disiok/poetry-seq2seq), [Pytorch Code](https://github.com/jhave/pytorch-poetry-generation), [C++ Code](https://github.com/XingxingZhang/rnnpg)
+
 ## Overview
 
 Two-stage procedure: The content of poems ("what to say") are first explicitly planned, and surface realization ("how to say") is conducted.
