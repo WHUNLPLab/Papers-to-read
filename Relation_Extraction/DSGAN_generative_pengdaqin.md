@@ -37,19 +37,23 @@ The goal of the generator is to accurately recognize true positive samples. For 
 #### Generator
 
 A set of sentence are sampled and we denote this set as $T$:
+
 $$
 T=\{s_j\}, s_j \sim p_G(s_j),\ j=1,2,\dots,|B_i|
 $$
 
 In order to challenge the discriminator, the objective of the generator can be formulated as **maximizing** the following probabilities of $T$:
+
 $$
 L_G = \sum \limits_{s_j \in T} \log p_D(s_j)
 $$
+
 Because $L_G$ involves a discrete sampling step, so we adopt the policy-gradient-based reinforcement learning method to update its parameters.
 
 #### Discriminator
 
 $T$ is treated as the negative samples; conversely, the rest part $F=B^i - T$ is treated as positive samples. So the objective of the discriminator can be formulated as **minimizing** the following cross-entropy loss function:
+
 $$
 L_D=-(\sum \limits_{s_j \in (B^i-T)} \log p_D(s_j) + \sum \limits_{s_j \in T)}\log(1-P_D(s_j)))
 $$
@@ -66,19 +70,25 @@ The objective of the generator is similar to the objective of the one-step-reinf
 
 We defined the reward $r$ from two angles:
 1. We hope the confidence of being positive samples by the discriminator becomes higher
+   
    $$
    r_1 = \frac{1}{|T|}\sum \limits_{s_j\in T}P_D(s_j) - b_1
    $$
+
 2. From the average prediction probability of $N^D$,
+   
    $$
    \tilde{p} = \frac{1}{|N^D|}\sum \limits_{s_j\in N^D}P_D(s_j)
    $$
+
    When the classification capacity of discriminator declines, the accuracy of being predicted as negative sample on $N^D$ gradually drops; thus, $\tilde{p}$ increases. Therefore, for epoch $k$, after processing the bag $B^i$, reward $r_2$ is calculated as below:
+   
    $$
    r_2 = \eta(\tilde{p}^k - b_2)
    $$
 
 The gradient of $L_G$ can be formulated as below:
+
 $$
 \begin{aligned}
 \nabla_{\theta_D}L_G &= \sum \limits_{s_j\in B^i} \mathbb{E}_{s_j \sim P_G(s_j)} r\nabla_{\theta_G} \log P_G(s_j) \\

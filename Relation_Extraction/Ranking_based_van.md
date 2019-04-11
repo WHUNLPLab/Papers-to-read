@@ -51,6 +51,7 @@ We first rank the instances and patterns based on their bipartite graph and then
 $$
 \mathbf{A}\approx \mathbf{ISP}^T
 $$
+
 where $A$ is the instance-pattern co-occurrence matrix, $I,S,P$ are SVD matrix.
 
 1. Specify the desired number $k$ of triples
@@ -62,6 +63,7 @@ where $A$ is the instance-pattern co-occurrence matrix, $I,S,P$ are SVD matrix.
 $$
 \mathbf{A} \approx \mathbf{WH}
 $$
+
 where $A \in \mathbb{R}^{M\times N}$ is non-negative data matrix, $W \in \mathbb{R}^{M \times K}$ and  $H \in \mathbb{R}^{K \times N}$ are non-negative factors.
 
 The non-negativity constraint is the main difference between NMF and LSA. We then select the $k$ instances that have the highest values from each column of $W$.

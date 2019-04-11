@@ -38,6 +38,7 @@ $$
 ### Decoder
 
 The predicted relation $y_t$ at time $t$ is computed by:
+
 $$
 \begin{aligned} 
 & \mathbf{s}_t = LSTM(\mathbf{s}_{t-1}, y_{t-1}, \mathbf{B}) \\
@@ -69,21 +70,32 @@ For both traning and testing, the bag representation should be initialized befor
 Information Quantity, which is used to quantify the information contained in a sentence bag for each of its relations, is calculated by the following two stages:
 
 1. Compute the matching scores between each input sentences and each relation:
-   $$\mathbf{W} = \mathbf{XM}$$
+   
+   $$
+   \mathbf{W} = \mathbf{XM}
+   $$
+
    where $\mathbf{X}\in \mathbb{R}^{n\times d^s}$ is the matrix of sentences embeddings, and $\mathbf{M}\in \mathbb{R}^{d^s \times n_l}$ is the representation matrix of pre-trained relations.
 2. Define Partial Max-pooling method to compute the weight of each input sentence based on $\mathbf{W}$:
-   $$e_i = \max (\mathbf{W}_{ij})\quad i=1,2,\dots,n,\ j\in L^+$$
+   
+   $$
+   e_i = \max (\mathbf{W}_{ij})\quad i=1,2,\dots,n,\ j\in L^+
+   $$
+
    where $j\in L^+$ is the positive relation of the given sentence bag.
 
    The weight of each input sentence:
+   
    $$
    \alpha_i = \frac{\exp{e_i}}{\sum_{k=1}^n \exp(e_i)}
    $$
 
    Given a bag and its relations:
+   
    $$
    IQ_j=\sum \limits_{i=1}^n \alpha_i \mathbf{W}_{ij} \quad i=1,2,\dots,n,j\in L^+
    $$
+
    The same weights are used to calculate $IQ_j$.
 
 We adopt the descending order of relation frequency to pre-train relation embedding in relation extraction

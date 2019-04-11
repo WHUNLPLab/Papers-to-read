@@ -38,23 +38,29 @@ The output word representations of the BLSTM are divided into two parts:
 * target pair-specific context representations
 
 For entity pair $(e_i, e_j)$, the representation of the entity are as follows:
+
 $$
 v_i=[e_i;t_i;p_{ij}]
 $$ 
+
 where $e_i$ is the average of the BLSTM representations of the entity, $t_i$ is the representation of its entity type and $p_{ij}$ is its relative psition to entity $e_j$
 
 The representation fro a context word $w_z$ of a target pair is
+
 $$
 v_{ijz}=[e_z;t_z;p_{zi};p_{zj}]
 $$
+
 where $e_z$ is the output of BLSTM, $t_z$ is type representaion and $p_{zi}$ and $p_{zj}$ are relative position representations.
 
 The context words representations of each target pair are then compiled into a single representation with an attention machanism.
 
 Finally, we concatenate the representations of the target entites and their context.
+
 $$
 v_{ij}^{(1)} = \mathbf{W}_s[v_i;v_j;c_{ij}] \in \mathbb{R}^{n_s}
 $$
+
 where $W_s$ is used to reduce the dimensionality of the resulting vector. The resulting vector coresponds to the representation of an edge or a one-length walk between nodes $i$ and $j$.
 
 ### Walk Aggregation Layer
@@ -64,19 +70,24 @@ The goal of this layer is to generate a single representation for a finite numbe
 The walk-based algorithm can be seen as a two-step process:
 
 1. Two consecutive edges in the graph are combined using a modified bilinear transformation:
+   
    $$
    f(v_{ik}^{(\lambda)}, v_{kj}^{(\lambda)}) = \sigma(v_{ik}^{(\lambda)}\ \odot \ (\mathbb{W}_b \ v_{kj}^{(\lambda)}))
    $$ 
+
    where $v_{ij}^{(\lambda)}$ coresponds to walks representation of lengths one-to-$\lambda$ between entities $e_i$ and $e_j$. This equation results in walks of lengths two-to-$2\lambda$.
 2. Linearly combine the initial walks (length one-to-$\lambda$) and the extended walks (length two-to-$2\lambda$):
+   
    $$
    v_{ij}^{(2\lambda)} = \beta v_{ij}^{(\lambda)} + (1-\beta) \sum \limits_{k \neq i,j} f(v_{ij}^{(\lambda)}, v_{ij}^{(\lambda)})
    $$
+
    where $\beta$ is a weight that indicates the importance of the shorter walks.
 
 ### Classification Layer
 
 For the final layer of the network, we pass the resulted pair representation into a fully connected layer with a softmax function:
+
 $$
 y = \textnormal{softmax}(\mathbf{W}_r\ v_{ij}^{(l)} + \mathbf{b}_r)
 $$

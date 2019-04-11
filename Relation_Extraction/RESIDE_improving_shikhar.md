@@ -2,7 +2,7 @@
 
 >> Shikhar Vashishth, Rishabh Joshi et al. 2018, EMNLP
 
-[Source code](http://github.com/malllabiisc/RESIDE.) is available.
+[Source code](http://github.com/malllabiisc/RESIDE) is available.
 
 ## Motivation
 
@@ -34,9 +34,11 @@ Although Bi-GRU is capableof capturing local context, it fails to capture long-r
 The syntactic graph encoding from GCN is appended to Bi-GRU output to get the final token representation, $h_i^{concat}=[h_i^{gru};h_{i^{k+1}}^{gcn}]$.
 
 For token $w_i$ in the sentence, attention weight $\alpha_i$ is caculated as:
+
 $$
 \alpha_i = \frac{\exp(u_i)}{\sum_{j=1}^m \exp(u_j)} \quad \text{where} \quad u_i=h_i^{concat}\cdot r
 $$
+
 where $r$ is a random query vector. The representation of a sentence is given as a weighted sum of its tokens, $s=\sum_{j=1}^m \alpha_i h_i^{concat}$.
 
 ### Side Information Acquisition
@@ -62,10 +64,13 @@ For cases when an entity has multiple types in different contexts, for instance,
 ### Instance Set Aggregation
 
 The attention score $\alpha_i$ for $i$-th sentence is formulated as:
+
 $$
 \alpha_i = \frac{\exp(\hat{s}_i\cdot q)}{\sum_{j=1}^n \exp(\hat{s}_j\cdot q)}\quad \text{where} \quad \hat{s}_i=[s_i;h_i^{rel}]
 $$
+
 where $q$ denotes a random query vector. The bag representation $\mathcal{B}$, which is the weighted sum of its sentences. The final representation $\hat{\mathcal{B}}$ can be obtained as:
+
 $$
 \hat{\mathcal{B}} = [\mathcal{B};h_{sub}^{type};h_{obj}^{type}]\quad \text{where}\quad \mathcal{B}=\sum\limits_{i=1}^n \alpha_i \hat{s}_i
 $$

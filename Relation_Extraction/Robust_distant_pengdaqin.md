@@ -68,6 +68,7 @@ Under the restriction of fixed number, if the agent decides to remove the curren
 ##### Loss function
 
 Therefore, regardless of these easy distinguished instances, the different parts of the removed parts in different epochs are the determinant of the change of $F_1$ scores. Therefore, we definite two sets:
+
 $$
 \begin{aligned}
 \Omega_{i-1} &= \Phi_{i-1} - (\Phi_i \cap \Phi_{i-1}) \\
@@ -78,9 +79,11 @@ $$
 If $F_1$ score increases in the epoch $i$, it means the actions of the epoch $i$ is more reasonable than that in the epoch $i-1$. In other words,$\Omega_i$ is more negative than $\Omega_{i-1}$. Thus, we assign the positive reward to $\Omega_{i}$ and the negative reward to $\Omega_{i-1}$, and vice versa.
 
 The ultimate loss function is formulated as follow:
+
 $$
 J(\theta) = \sum^{\Omega_i}\log \pi(a|s;\theta)R + \sum^{\Omega_{i-1}}\log \pi(a|s;\theta)(-R)
 $$
+
 where $R_i=\alpha(F_1^i - F_1^{i-1})$
 
 ### Redistributing Training Dataset with Policy-based Agents
