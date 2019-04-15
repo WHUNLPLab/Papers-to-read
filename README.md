@@ -26,7 +26,13 @@
 
 [2018-EMNLP-Adversarial training for multi-context joint entity and relation extraction](./Relation_Extraction/Adversarial_training_giannis.md)
 
+[2018-EMNLP-Attention-Based Capsule Networks with Dynamic Routing for Relation Extraction](https://arxiv.org/abs/1812.11321)
+
 [2018-AAAI-SEE: Syntax-aware Entity Embedding for Neural Relation Extraction](./Relation_Extraction/SEE_syntax_zhengquihe.md)
+
+[2018-AAAI-Reinforcement Learning for Relation Classification from Noisy Data](./Relation_Extraction/Reinforcement_learning_junfeng.md)
+
+[2018-AAAI-Large Scaled Relation Extraction with Reinforcement Learning](https://www.aaai.org/ocs/index.php/AAAI/AAAI18/paper/viewPaper/16257)
 
 [2018-ACL-A Walk-based Model on Entity Graphs for Relation Extraction](./Relation_Extraction/A_walk_fenia.md)
 
@@ -37,6 +43,8 @@
 [2018-ACL-Ranking-Based Automatic Seed Selection and Noise Reduction for Weakly Supervised Relation Extraction](./Relation_Extraction/Ranking_based_van.md)
 
 [2018-ACL-Robust Distant Supervision Relation Extraction via Deep Reinforcement Learning](./Relation_Extraction/Robust_distant_pengdaqin.md)
+
+[2018-NAACL-Global Relation Embedding for Relation Extraction](./Relation_Extraction/Global_relation_yusu.md)
 
 ## Poetry Generation
 
